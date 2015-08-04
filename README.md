@@ -2,12 +2,12 @@ Median
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][codecov-image]][codecov-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> [geometric](https://en.wikipedia.org/wiki/geometric_distribution) distribution [median](https://en.wikipedia.org/wiki/Median).
+> [Geometric](https://en.wikipedia.org/wiki/geometric_distribution) distribution [median](https://en.wikipedia.org/wiki/Median).
 
 The [median](https://en.wikipedia.org/wiki/Median) for a [geometric](https://en.wikipedia.org/wiki/geometric_distribution) random variable is
 
 <div class="equation" align="center" data-raw-text="\operatorname{median}\left( X \right) = \left\lceil \frac{-1}{\log_2(1-p)} \right\rceil" data-equation="eq:median">
-	<img src="" alt="Median for a geometric distribution.">
+	<img src="https://cdn.rawgit.com/distributions-io/geometric-median/7362b7cb290cfa8481d75472dbe12095d57e5d44/docs/img/eqn.svg" alt="Median for a geometric distribution.">
 	<br>
 </div>
 
