@@ -2,16 +2,16 @@ Median
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][codecov-image]][codecov-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> [geometric](https://en.wikipedia.org/wiki/geometric_distribution) distribution [median](https://en.wikipedia.org/wiki/median).
+> [geometric](https://en.wikipedia.org/wiki/geometric_distribution) distribution [median](https://en.wikipedia.org/wiki/Median).
 
-The [median](https://en.wikipedia.org/wiki/median) for a [geometric](https://en.wikipedia.org/wiki/geometric_distribution) random variable is
+The [median](https://en.wikipedia.org/wiki/Median) for a [geometric](https://en.wikipedia.org/wiki/geometric_distribution) random variable is
 
-<div class="equation" align="center" data-raw-text="\operatorname{}\left[ X \right] = " data-equation="eq:median">
-	<img src="" alt="median for a geometric distribution.">
+<div class="equation" align="center" data-raw-text="\operatorname{median}\left( X \right) = \left\lceil \frac{-1}{\log_2(1-p)} \right\rceil" data-equation="eq:median">
+	<img src="" alt="Median for a geometric distribution.">
 	<br>
 </div>
 
-where `0 &lt;=p&lt;= 1` is the success probability.
+where `0 <= p <= 1` is the success probability.
 
 
 ## Installation
@@ -31,7 +31,7 @@ var median = require( 'distributions-geometric-median' );
 
 #### median( p[, opts] )
 
-Computes the [median](https://en.wikipedia.org/wiki/median) for a [geometric](https://en.wikipedia.org/wiki/geometric_distribution) distribution with parameter `p` . `p` may be either a [`number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), an [`array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array), a [`typed array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays), or a [`matrix`](https://github.com/dstructs/matrix).
+Computes the [median](https://en.wikipedia.org/wiki/Median) for a [geometric](https://en.wikipedia.org/wiki/geometric_distribution) distribution with parameter `p` . `p` may be either a [`number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), an [`array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array), a [`typed array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays), or a [`matrix`](https://github.com/dstructs/matrix).
 
 ``` javascript
 var matrix = require( 'dstructs-matrix' ),
@@ -48,11 +48,11 @@ out = median( 0.2 );
 p = [ 0.2, 0.4, 0.6, 0.8 ];
 out = median( p );
 
-// returns [ ~4.000, ~2.000, ~1.000, ~1.000 ]
+// returns [ 4.000, 2.000, 1.000, 1.000 ]
 
 p = new Float32ArrayArray( p );
 out = median( p );
-// returns Float64Array( [~4.000,~2.000,~1.000,~1.000] )
+// returns Float64Array( [4.000,2.000,1.000,1.000] )
 
 p =  matrix( [ 0.2, 0.4, 0.6, 0.8 ], [2,2] );
 /*
@@ -62,8 +62,8 @@ p =  matrix( [ 0.2, 0.4, 0.6, 0.8 ], [2,2] );
 
 out = median( p );
 /*
-	[ ~4.000 ~2.000,
-	  ~1.000 ~1.000 ]
+	[ 4.000 2.000,
+	  1.000 1.000 ]
 */
 ```
 
@@ -92,7 +92,7 @@ function getValue( d, i ) {
 var out = median( p, {
 	'accessor': getValue
 });
-// returns [ ~4.000, ~2.000, ~1.000, ~1.000 ]
+// returns [ 4.000, 2.000, 1.000, 1.000 ]
 ```
 
 To [deepset](https://github.com/kgryte/utils-deep-set) an object `array`, provide a key path and, optionally, a key path separator.
@@ -108,10 +108,10 @@ var p = [
 var out = median( p, 'x|1', '|' );
 /*
 	[
-		{'x':[9,~4.000]},
-		{'x':[9,~2.000]},
-		{'x':[9,~1.000]},
-		{'x':[9,~1.000]},
+		{'x':[9,4.000]},
+		{'x':[9,2.000]},
+		{'x':[9,1.000]},
+		{'x':[9,1.000]},
 	]
 */
 
@@ -152,7 +152,7 @@ p = [ 0.2, 0.4, 0.6, 0.8 ];
 out = median( p, {
 	'copy': false
 });
-// returns [ ~4.000, ~2.000, ~1.000, ~1.000 ]
+// returns [ 4.000, 2.000, 1.000, 1.000 ]
 
 bool = ( data === out );
 // returns true
@@ -167,8 +167,8 @@ out = median( mat, {
 	'copy': false
 });
 /*
-	[ ~4.000 ~2.000,
-	  ~1.000 ~1.000 ]
+	[ 4.000 2.000,
+	  1.000 1.000 ]
 */
 
 bool = ( mat === out );

@@ -40,8 +40,8 @@ describe( 'matrix median', function tests() {
 	}
 
 	beforeEach( function before() {
-		mat = matrix( d1, [5,5], 'int16' );
-		out = matrix( d2, [5,5], 'int16' );
+		mat = matrix( d1, [5,5], 'float64' );
+		out = matrix( d2, [5,5], 'float64' );
 	});
 
 	it( 'should export a function', function test() {
@@ -58,7 +58,7 @@ describe( 'matrix median', function tests() {
 	it( 'should compute the distribution median for each matrix element', function test() {
 		var actual;
 
-		actual = matrix( [5,5], 'int16' );
+		actual = matrix( [5,5], 'float64' );
 		actual = median( actual, mat );
 
 		assert.deepEqual( actual.data, out.data );

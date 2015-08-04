@@ -28,14 +28,15 @@ describe( 'number median', function tests() {
 	});
 
 	it( 'should compute the distribution median', function test() {
-		assert.closeTo( median( 0.2 ), 4 );
-		assert.closeTo( median( 0.4  ), 2 );
-		assert.closeTo( median( 0.6  ), 1 );
-		assert.closeTo( median( 0.8  ), 1 );
+		assert.closeTo( median( 0.2 ), 4, 1e-5 );
+		assert.closeTo( median( 0.4  ), 2, 1e-5 );
+		assert.closeTo( median( 0.6  ), 1, 1e-5 );
+		assert.closeTo( median( 0.8  ), 1, 1e-5 );
 	});
 
 	it( 'should return `NaN` for invalid values of parameter p', function test() {
-		assert.isTrue( isnan( mean( -1 ) ) );
+		assert.isTrue( isnan( median( -1 ) ) );
+		assert.isTrue( isnan( median( 1.1 ) ) );
 	});
 
 });
