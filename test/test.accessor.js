@@ -36,7 +36,7 @@ describe( 'accessor median', function tests() {
 		actual = new Array( p.length );
 
 		actual = median( actual, p, getValue );
-		expected = [ 4, 2, 1, 1 ];
+		expected = [ 3, 1, 0, 0 ];
 
 		assert.deepEqual( actual, expected );
 

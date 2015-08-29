@@ -35,8 +35,8 @@ describe( 'matrix median', function tests() {
 	d1 = new Float64Array( 25 );
 	d2 = new Float64Array( 25 );
 	for ( i = 0; i < d1.length; i++ ) {
-		d1[ i ] = i / 10;
-		d2[ i ] = MEDIAN( i / 10 );
+		d1[ i ] = i / 25;
+		d2[ i ] = MEDIAN( i / 25 );
 	}
 
 	beforeEach( function before() {

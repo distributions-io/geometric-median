@@ -36,10 +36,10 @@ describe( 'deepset median', function tests() {
 
 		data = median( data, 'x' );
 		expected = [
-			{'x':4},
-			{'x':2},
+			{'x':3},
 			{'x':1},
-			{'x':1}
+			{'x':0},
+			{'x':0}
 		];
 
 		assert.deepEqual( data, expected );
@@ -54,10 +54,10 @@ describe( 'deepset median', function tests() {
 
 		data = median( data, 'x/1', '/' );
 		expected = [
-			{'x':[9,4]},
-			{'x':[9,2]},
+			{'x':[9,3]},
 			{'x':[9,1]},
-			{'x':[9,1]}
+			{'x':[9,0]},
+			{'x':[9,0]}
 		];
 
 		assert.deepEqual( data, expected, 'custom separator' );

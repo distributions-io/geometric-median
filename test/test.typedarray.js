@@ -31,7 +31,7 @@ describe( 'typed-array median', function tests() {
 		actual = new Float64Array( p.length );
 
 		actual = median( actual, p );
-		expected = new Float64Array( [ 4, 2, 1, 1 ] );
+		expected = new Float64Array( [ 3, 1, 0, 0 ] );
 
 		assert.deepEqual( actual, expected );
 	});

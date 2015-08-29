@@ -6,12 +6,12 @@ Median
 
 The [median](https://en.wikipedia.org/wiki/Median) for a [geometric](https://en.wikipedia.org/wiki/geometric_distribution) random variable is
 
-<div class="equation" align="center" data-raw-text="\operatorname{median}\left( X \right) = \left\lceil \frac{-1}{\log_2(1-p)} \right\rceil" data-equation="eq:median">
-	<img src="https://cdn.rawgit.com/distributions-io/geometric-median/7362b7cb290cfa8481d75472dbe12095d57e5d44/docs/img/eqn.svg" alt="Median for a geometric distribution.">
+<div class="equation" align="center" data-raw-text="\operatorname{median}\left( X \right) = \left\lceil \frac{-1}{\log_2(1-p)} \right\rceil - 1" data-equation="eq:median">
+	<img src="https://cdn.rawgit.com/distributions-io/geometric-median/f1732c7836760bd79bb936e5bac35a36473c7d5d/docs/img/eqn.svg" alt="Median for a geometric distribution.">
 	<br>
 </div>
 
-where `0 <= p <= 1` is the success probability.
+where `0 <= p <= 1` is the success probability. The random variable `X` denotes the number of failures until the first success in a sequence of independent Bernoulli trials.
 
 
 ## Installation
@@ -35,36 +35,35 @@ Computes the [median](https://en.wikipedia.org/wiki/Median) for a [geometric](ht
 
 ``` javascript
 var matrix = require( 'dstructs-matrix' ),
-	data,
+	p,
 	mat,
 	out,
 	i;
 
 
-
 out = median( 0.2 );
-// returns ~4
+// returns 3
 
 p = [ 0.2, 0.4, 0.6, 0.8 ];
 out = median( p );
+// returns [ 3, 1, 0, 0 ]
 
-// returns [ 4.000, 2.000, 1.000, 1.000 ]
-
-p = new Float32ArrayArray( p );
+p = new Float32Array( p );
 out = median( p );
-// returns Float64Array( [4.000,2.000,1.000,1.000] )
+// returns Float64Array( [3,1,0,0] )
 
 p =  matrix( [ 0.2, 0.4, 0.6, 0.8 ], [2,2] );
 /*
-	[ 0.2 0.4,
+	[ 0.2 0.4
 	  0.6 0.8 ]
 */
 
 out = median( p );
 /*
-	[ 4.000 2.000,
-	  1.000 1.000 ]
+	[ 3 1
+	  0 0 ]
 */
+
 ```
 
 The function accepts the following `options`:
@@ -92,7 +91,8 @@ function getValue( d, i ) {
 var out = median( p, {
 	'accessor': getValue
 });
-// returns [ 4.000, 2.000, 1.000, 1.000 ]
+// returns [ 3, 1, 0, 0 ]
+
 ```
 
 To [deepset](https://github.com/kgryte/utils-deep-set) an object `array`, provide a key path and, optionally, a key path separator.
@@ -105,18 +105,20 @@ var p = [
 	{'x':[9,0.8]}
 ];
 
-var out = median( p, 'x|1', '|' );
+var out = median( p, {
+	'path': 'x|1',
+	'sep': '|'
+});
 /*
-	[
-		{'x':[9,4.000]},
-		{'x':[9,2.000]},
-		{'x':[9,1.000]},
-		{'x':[9,1.000]},
-	]
+	[ { x: [ 9, 3 ] },
+	  { x: [ 9, 1 ] },
+	  { x: [ 9, 0 ] },
+	  { x: [ 9, 0 ] } ]
 */
 
-var bool = ( data === out );
+var bool = ( p === out );
 // returns true
+
 ```
 
 By default, when provided a [`typed array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays) or [`matrix`](https://github.com/dstructs/matrix), the output data structure is `float64` in order to preserve precision. To specify a different data type, set the `dtype` option (see [`matrix`](https://github.com/dstructs/matrix) for a list of acceptable data types).
@@ -129,13 +131,14 @@ p = new Float64Array( [ 0.2,0.4,0.6,0.8 ] );
 out = median( p, {
 	'dtype': 'int32'
 });
-// returns Int32Array( [ 4,2,1,1 ] )
+// returns Int32Array( [3,1,0,0] )
 
 // Works for plain arrays, as well...
 out = median( [0.2,0.4,0.6,0.8], {
 	'dtype': 'int32'
 });
-// returns Int32Array( [ 4,2,1,1 ] )
+// returns Int32Array( [3,1,0,0] )
+
 ```
 
 By default, the function returns a new data structure. To mutate the input data structure (e.g., when input values can be discarded or when optimizing memory usage), set the `copy` option to `false`.
@@ -152,14 +155,14 @@ p = [ 0.2, 0.4, 0.6, 0.8 ];
 out = median( p, {
 	'copy': false
 });
-// returns [ 4.000, 2.000, 1.000, 1.000 ]
+// returns [ 3, 1, 0, 0 ]
 
-bool = ( data === out );
+bool = ( p === out );
 // returns true
 
 mat = matrix( [ 0.2, 0.4, 0.6, 0.8 ], [2,2] );
 /*
-	[ 0.2 0.4,
+	[ 0.2 0.4
 	  0.6 0.8 ]
 */
 
@@ -167,8 +170,8 @@ out = median( mat, {
 	'copy': false
 });
 /*
-	[ 4.000 2.000,
-	  1.000 1.000 ]
+	[ 3 1
+	  0 0 ]
 */
 
 bool = ( mat === out );

@@ -128,17 +128,17 @@ describe( 'compute-median', function tests() {
 	});
 
 	it( 'should compute the distribution median when provided a number', function test() {
-		assert.strictEqual( median( 0.2 ), 4 );
-		assert.strictEqual( median( 0.4  ), 2 );
-		assert.strictEqual( median( 0.6  ), 1 );
-		assert.strictEqual( median( 0.8  ), 1 );
+		assert.strictEqual( median( 0.2 ), 3 );
+		assert.strictEqual( median( 0.4  ), 1 );
+		assert.strictEqual( median( 0.6  ), 0 );
+		assert.strictEqual( median( 0.8  ), 0 );
 	});
 
 	it( 'should compute the distribution median when provided a plain array', function test() {
 		var p, actual, expected;
 
 		p = [ 0.2, 0.4, 0.6, 0.8 ];
-		expected = [ 4, 2, 1, 1 ];
+		expected = [ 3, 1, 0, 0 ];
 
 		actual = median( p );
 		assert.notEqual( actual, p );
@@ -156,7 +156,7 @@ describe( 'compute-median', function tests() {
 		var p, actual, expected;
 
 		p = new Float64Array ( [ 0.2,0.4,0.6,0.8 ] );
-		expected = new Float64Array( [ 4,2,1,1 ] );
+		expected = new Float64Array( [ 3, 1, 0, 0 ] );
 
 		actual = median( p );
 		assert.notEqual( actual, p );
@@ -166,7 +166,7 @@ describe( 'compute-median', function tests() {
 		actual = median( p, {
 			'copy': false
 		});
-		expected = new Float64Array( [ 4,2,1,1 ] );
+		expected = new Float64Array( [ 3, 1, 0, 0 ] );
 		assert.strictEqual( actual, p );
 		assert.deepEqual( p, expected );
 	});
@@ -175,7 +175,7 @@ describe( 'compute-median', function tests() {
 		var p, actual, expected;
 
 		p = [ 0.2, 0.4, 0.6, 0.8 ];
-		expected = new Int32Array( [ 4,2,1,1 ] );
+		expected = new Int32Array( [ 3, 1, 0, 0 ] );
 
 		actual = median( p, {
 			'dtype': 'int32'
@@ -194,7 +194,7 @@ describe( 'compute-median', function tests() {
 			{'p':0.6},
 			{'p':0.8}
 		];
-		expected = [ 4, 2, 1, 1 ];
+		expected = [ 3, 1, 0, 0 ];
 
 		actual = median( p, {
 			'accessor': getValue
@@ -226,10 +226,10 @@ describe( 'compute-median', function tests() {
 		];
 
 		expected = [
-			{'x':[9,4]},
-			{'x':[9,2]},
+			{'x':[9,3]},
 			{'x':[9,1]},
-			{'x':[9,1]}
+			{'x':[9,0]},
+			{'x':[9,0]}
 		];
 
 		actual = median( data, {
@@ -264,8 +264,8 @@ describe( 'compute-median', function tests() {
 		d1 = new Float64Array( 25 );
 		d2 = new Float64Array( 25 );
 		for ( i = 0; i < d1.length; i++ ) {
-			d1[ i ] = i / 10;
-			d2[ i ] = MEDIAN( i / 10 );
+			d1[ i ] = i / 25;
+			d2[ i ] = MEDIAN( i / 25 );
 		}
 		mat = matrix( d1, [5,5], 'float64' );
 		out = median( mat );
@@ -290,8 +290,8 @@ describe( 'compute-median', function tests() {
 		d1 = new Float64Array( 25 );
 		d2 = new Float32Array( 25 );
 		for ( i = 0; i < d1.length; i++ ) {
-			d1[ i ] = i + 1;
-			d2[ i ] = MEDIAN( i + 1 );
+			d1[ i ] = i / 25;
+			d2[ i ] = MEDIAN( i / 25 );
 		}
 		mat = matrix( d1, [5,5], 'float64' );
 		out = median( mat, {

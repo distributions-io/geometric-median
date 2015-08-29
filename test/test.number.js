@@ -28,10 +28,10 @@ describe( 'number median', function tests() {
 	});
 
 	it( 'should compute the distribution median', function test() {
-		assert.closeTo( median( 0.2 ), 4, 1e-5 );
-		assert.closeTo( median( 0.4  ), 2, 1e-5 );
-		assert.closeTo( median( 0.6  ), 1, 1e-5 );
-		assert.closeTo( median( 0.8  ), 1, 1e-5 );
+		assert.strictEqual( median( 0.2 ), 3 );
+		assert.strictEqual( median( 0.4  ), 1 );
+		assert.strictEqual( median( 0.6  ), 0 );
+		assert.strictEqual( median( 0.8  ), 0 );
 	});
 
 	it( 'should return `NaN` for invalid values of parameter p', function test() {
