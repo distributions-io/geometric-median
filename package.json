@@ -20,7 +20,7 @@
   "main": "./lib",
   "repository": {
     "type": "git",
-    "url": "git://github.com/compute-io/geometric-median.git"
+    "url": "git://github.com/compute-io/distributions-median.git"
   },
   "keywords": [
     "distributions.io",
@@ -33,7 +33,7 @@
     "order statistics"
   ],
   "bugs": {
-    "url": "https://github.com/compute-io/geometric-median/issues"
+    "url": "https://github.com/distributions-io/geometric-median/issues"
   },
   "dependencies": {
     "compute-array-constructors": "^1.0.0",
